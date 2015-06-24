@@ -1,6 +1,6 @@
-# sistema de productividad Usaria
+# Sistema de productividad Usaria
 
-## [Unreleased][unreleased]
+## ¿Qué se está haciendo?
 ### Modificado
 - Actividades institucionales y extras pueden ser borradas o modificadas.
 
