@@ -7,7 +7,7 @@
 ### Agregado
 - Proyectos pueden ver las actividades extras relacionadas.
 
-## 0.1.0: 2015-06-24
+## Versión 0.1.0: 2015-06-24
 ### Agregado
 - Vista de reporte mensual.
 
