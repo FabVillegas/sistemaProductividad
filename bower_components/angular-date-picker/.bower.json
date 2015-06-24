@@ -1,0 +1,29 @@
+{
+  "name": "angular-date-picker",
+  "main": "angular-date-picker.js",
+  "version": "1.2.0",
+  "homepage": "https://github.com/myplanet/angular-date-picker",
+  "description": "Lightweight Calendar for Angular",
+  "authors": [
+    "Ates Goral <ates.g@myplanet.com>"
+  ],
+  "moduleType": [
+    "amd",
+    "globals",
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*"
+  ],
+  "_release": "1.2.0",
+  "_resolution": {
+    "type": "version",
+    "tag": "v1.2.0",
+    "commit": "8bc78c16fdfbd34135ea4bd2db53336d98a8e1aa"
+  },
+  "_source": "git://github.com/myplanet/angular-date-picker.git",
+  "_target": "~1.2.0",
+  "_originalSource": "angular-date-picker",
+  "_direct": true
+}

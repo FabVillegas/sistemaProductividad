@@ -1,0 +1,33 @@
+<div class="modal-title">Editar Actividad</div>
+<label style="color:red" ng-show="emptyName">Falta escribir un nombre</label>
+<label>Nombre:</label>
+<input ng-model="editableActivity.activity_name" class="u-full-width" type="text" placeholder="Nombre">
+<label style="color:red" ng-show="emptyResponsable">Falta elegir responsable</label>
+<label>Responsable:</label>
+<select ng-model="editableActivity.responsable" ng-options="responsable.name for responsable in responsables" class="u-full-width">
+</select>
+<label style="color:red" ng-show="notNumber">No se ingreso un número valido de horas</label>
+<label>Tiempo planeadas:</label>
+<input ng-model="editableActivity.hrs_planned" type="number" min="0" placeholder="Horas estimadas" class="hrs-picker">
+<input ng-model="editableActivity.minutes_planned" type="number" min="0" placeholder="Minutos estimados" class="hrs-picker">
+<label>Estatus:</label>
+<select ng-model="editableActivity.status" class="u-full-width">
+  <option>Iniciado</option>
+  <option>Pendiente</option>
+  <option>Terminado</option>
+  <option>Cancelado</option>
+</select>
+<label>Comentarios:</label>
+<input ng-model="editableActivity.comments" class="u-full-width" type="text" placeholder="Comentarios">
+<label class="modal-date-label">Fecha Inicio</label>
+<label class="modal-date-label">Fecha Fin</label>
+<div class="picker-container">
+  <input ng-model="editableActivity.begin_date" ng-click="switchDatePicker('editableActivity', 'begin')" class="picker-input" type="text">
+  <date-picker ng-model="editableActivity.begin_date" ng-show="editableActivity_beginDate" ng-change="switchDatePicker('editableActivity', 'begin')" class="custom-datepicker"  format-date="formatDate" parse-date="parseDate"></date-picker>
+</div>
+<div class="picker-container">
+  <input ng-model="editableActivity.end_date" ng-click="switchDatePicker('editableActivity', 'end')" class="picker-input" type="text">
+  <date-picker ng-model="editableActivity.end_date"  ng-show="editableActivity_endDate" ng-change="switchDatePicker('editableActivity', 'end')" class="custom-datepicker" format-date="formatDate" parse-date="parseDate"></date-picker>
+</div>
+<p>&nbsp;</p>
+<button ng-click="updateActivity()" class="u-full-width button-add" type="button">Guardar</button>

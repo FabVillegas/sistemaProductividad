@@ -1,0 +1,24 @@
+<div class="modal-title">Agregar persona</div>
+<label ng-show="nameIsMissed" style="color: red">Falta escribir el nombre</label>
+<input ng-model="newUser.name" class="u-full-width" type="text" placeholder="Nombre">
+<label ng-show="lastnameIsMissed" style="color: red">Falta escribir el apellido</label>
+<input ng-model="newUser.lastname" class="u-full-width" type="text" placeholder="Apellido">
+<input ng-model="newUser.photo" class="u-full-width" type="text" placeholder="Foto: http://www.usaria.mx/acerca-de">
+<label ng-show="emailIsMissed" style="color: red">Falta escribir el correo</label>
+<input ng-model="newUser.email" class="u-full-width" type="text" placeholder="Correo: nombre.apellido@usaria.mx">
+<label>Hrs de trabajo por semana</label>
+<select ng-model="newUser.hrs_to_complete" class="u-full-width">
+  <option>20</option>
+  <option selected>40</option>
+</select>
+<label>Privilegio</label>
+<select ng-model="newUser.privilege" class="u-full-width">
+  <option>Empleado</option>
+  <option>Administrador de Proyecto</option>
+  <option>Administrador de Sistema</option>
+</select>
+<label>Líder</label>
+<select ng-model="selected.responsable" ng-options="responsable.name for responsable in responsables" class="u-full-width">
+</select>
+<p>&nbsp;</p>
+<button ng-click="saveUser()" class="u-full-width button-add" type="button">Guardar</button>

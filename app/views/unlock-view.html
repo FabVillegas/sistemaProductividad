@@ -1,0 +1,9 @@
+<div ng-controller="unlockCtrl">
+  <container margin-top="150">
+    <four-columns ng-repeat="employee in employees track by $index">
+      <img class="employee-photo" src="{{employee.photo}}">
+      <p class="employee-name">{{employee.name}}</p>
+      <button ng-click="unlockWeek($index)" class="button-add u-full-width" style="margin-bottom: 50px" type="button">Desbloquear</button>
+    </four-columns>
+  </container>
+</div>

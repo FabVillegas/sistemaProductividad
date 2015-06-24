@@ -1,0 +1,42 @@
+<div ng-controller="dashboardCtrl">
+  <div class="sidebar-wrapper">
+    <div class="logo-container">
+      <img class="logo" src="img/logoBlanco.png">
+    </div>
+    <div>
+      <ul class="menu-links">
+        <a ui-sref="dashboard.projects" ng-show="privilegePM" ng-click="updateMenu('projects')">
+          <li ng-class="{currentState: projectsSelected}">Proyectos</li>
+        </a>
+        <a ui-sref="dashboard.users" ng-show="privilegeADMIN" ng-click="updateMenu('users')">
+          <li ng-class="{currentState: projectsSelected}">Personas</li>
+        </a>
+        <a ui-sref="dashboard.progress" ng-show="privilegeADMIN || privilegePM" ng-click="updateMenu('progress')">
+          <li ng-class="{currentState: progressSelected}">Progreso Individual</li>
+        </a>
+        <a ui-sref="dashboard.report" ng-show="privilegePM" ng-click="updateMenu('report')">
+          <li ng-class="{currentState: reportSelected}">Reporte mensual</li>
+        </a>
+        <a ui-sref="dashboard.unlock" ng-show="privilegePM" ng-click="updateMenu('unlock')">
+          <li ng-class="{currentState: unlockSelected}">Desbloquear Semana</li>
+        </a>
+        <a ui-sref="dashboard.records" ng-click="updateMenu('records')">
+          <li ng-class="{currentState: recordsSelected}">Captura tus horas</li>
+        </a>
+      </ul>
+      </div>
+  </div>
+  <div class="user-container">
+    <container padding-top="10" padding-bottom="10">
+      <twelve-columns>
+        <label class="current-user-email">{{email}}</label>
+        <a class="link-session" ng-click="openPasswordTemplate()">Cambiar contraseña</a>
+        <a class="link-session" ng-click="logout()">Cerrar sesión</a>
+        <img class="current-user-photo" src="{{photo}}">
+      </twelve-columns>
+    </container>
+  </div>
+  <div class="content-wrapper">
+    <div class="childView" ui-view></div>
+  </div>
+</div>

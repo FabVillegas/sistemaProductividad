@@ -1,0 +1,33 @@
+<div ng-controller="progressCtrl">
+    <div class="content-container">
+      <div class="project-manager-privilege">
+        <container margin-top="150">
+          <twelve-columns>
+            <label>Elegir mes y semana:</label>
+          </twelve-columns>
+          <four-columns>
+            <select ng-model="unlockedWeek.month" ng-change="getMondays()" class="u-full-width" ng-options="month.name for month in months"></select>
+          </four-columns>
+          <four-columns>
+            <select ng-model="unlockedWeek.week" ng-change="getUsersWeeklyReportedHours()" class="u-full-width" ng-options="week.dateToShow for week in weeks"></select>
+          </four-columns>
+        </container>
+        <container >
+          <input ng-model="search.text" type="text" style="width: 96%; margin: 0 2% 10px 2%" placeholder="Teclea nombre a buscar">
+          <four-columns ng-repeat="user in users | filter:search.text track by $index">
+            <div class="project" style="height: 400px">
+              <div class="project-info">
+                <p class="project-name">{{user.name}} {{user.lastname}}</p>
+              </div>
+              <div class="project-info">
+                <img style="width: 100%; height: auto" src="{{user.photo}}">
+              </div>
+              <label class="project-label">Planeado:  {{user.sum_hrs_planned | number:2}} hrs</label>
+              <label class="project-label">Reportado: {{user.sum_hrs_reported | number:2}} hrs</label>
+              <progress class="project-planned-hours" value="{{user.sum_hrs_reported}}" max="{{user.sum_hrs_planned}}"></progress>
+            </div>
+          </four-columns>
+        </container>
+      </div>
+    </div>
+</div>

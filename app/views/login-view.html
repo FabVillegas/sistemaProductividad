@@ -1,0 +1,21 @@
+<script type="text/ng-template" id="loginErrorMessage">
+  <h2 style="text-align=center;">Contraseña incorrecta</h2>
+</script>
+<div ng-controller="loginCtrl">
+  <div class="superContainer">
+    <container>
+      <two-columns>
+        <img src="img/logoBlanco.png">
+      </two-columns>
+    </container>
+    <div class="row-separator" style="height:25vh"></div>
+    <container>
+      <four-columns offset="eight">
+        <p class="welcomeText">Sistema de administración de personal y actividades</p>
+        <input ng-model="user.name" class="u-full-width" type="text" placeholder="nombre.apellido@usaria.mx">
+        <input ng-model="user.password" ng-enter="login()" class="u-full-width" type="password" placeholder="contraseña">
+        <button ng-click="login()" class="button-login u-full-width" type="button">Entrar</button>
+      </four-columns>
+    </container>
+  </div>
+</div>

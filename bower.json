@@ -1,0 +1,21 @@
+{
+  "name": "productividadUsaria",
+  "description": "Sistema de productividad de horas",
+  "author": "Fabritzio Villegas",
+  "contributors": {},
+  "dependencies": {
+    "angular": "~1.3.0",
+    "angular-ui-router": "~0.2.11",
+    "angularfire": "~0.9.0",
+    "ngDialog": "~0.3.12",
+    "angular-date-picker": "~1.2.0",
+    "angularjs-datepicker": "~0.2.4",
+    "angular-charts": "~0.2.7",
+    "angular-chart.js": "~0.7.1"
+  },
+  "version": "0.1.0",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/FabVillegas/productividadUsaria"
+  }
+}

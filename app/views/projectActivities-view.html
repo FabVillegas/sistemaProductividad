@@ -1,0 +1,92 @@
+<div ng-controller="projectActivitiesCtrl">
+  <script type="text/ng-template" id="responsableError">
+    <h3>Elige un responsable válido</h3>
+  </script>
+  <script type="text/ng-template" id="xmlError">
+    <h3>Utiliza un archivo XML válido</h3>
+  </script>
+  <container margin-top="150">
+    <four-columns>
+      <label>Nombre:</label>
+      <input ng-model="project.name" class="u-full-width" type="text">
+      <label>Estatus del proyecto: </label>
+      <select class="u-full-width" ng-model="project.status">
+        <option>Iniciado</option>
+        <option>Pendiente</option>
+        <option>Cancelado</option>
+        <option>Terminado</option>
+      </select>
+      <label>Inicio - Fin</label>
+      <div class="picker-container">
+        <input ng-model="project.begin_date" ng-click="switchDatePicker('project', 'begin')" class="picker-input" type="text">
+        <date-picker ng-model="project.begin_date" ng-show="project_beginDate" ng-change="switchDatePicker('project', 'begin')" class="custom-datepicker" format-date="formatDate" parse-date="parseDate"></date-picker>
+      </div>
+      <div class="picker-container">
+        <input ng-model="project.end_date" ng-click="switchDatePicker('project', 'end')" class="picker-input" type="text">
+        <date-picker ng-model="project.end_date" ng-show="project_endDate" ng-change="switchDatePicker('project', 'end')" class="custom-datepicker" format-date="formatDate" parse-date="parseDate"></date-picker>
+      </div>
+      <button ng-click="updateProject()" class="button-add" type="button">guardar cambios</button>
+    </four-columns>
+    <three-columns offset="six">
+      <label>Selecciona archivo XML</label>
+      <input id="a_file" type="file" name="ganttFile">
+      <button ng-click="addBunchOfActivities()" class="u-full-width button-add" type="button">Agregar plan de trabajo</button>
+    </three-columns>
+    <three-columns>
+      <label>Agrega actividad individual</label>
+      <input type="file" style="visibility: hidden">
+      <button ng-click="addActivity()" class="u-full-width button-add" type="button">Nueva actividad</button>
+    </three-columns>
+    <twelve-columns>
+      <h4>Actividades</h4>
+      <input ng-model="search.text" class="u-full-width" placeholder="Teclea nombre, responsable, fecha, estado a buscar" type="text">
+      <div style="overflow-x: scroll">
+        <table class="u-full-width">
+          <tr>
+            <th>Nombre</th>
+            <th>Responsable</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th style="text-align: center">Tiempo planeado</th>
+            <th style="text-align: center">Tiempo reportado</th>
+            <th>Estado</th>
+            <th>&nbsp;</th>
+          </tr>
+          <tr ng-repeat="plannedActivity in activities | filter:search.text track by $index">
+            <td>
+              <p>{{plannedActivity.activity_name}}</p>
+            </td>
+            <td>
+              <p>{{plannedActivity.employee}}</p>
+            </td>
+            <td>
+              <p class="activity-field-short">{{plannedActivity.begin_date}}</p>
+            </td>
+            <td>
+              <p class="activity-field-short">{{plannedActivity.end_date}}</p>
+            </td>
+            <td style="text-align: center">
+              <p>{{plannedActivity.hrs_planned}} hrs : {{plannedActivity.minutes_planned}} mins</p>
+            </td>
+            <td style="text-align: center">
+              <p>{{plannedActivity.hrs_reported}} hrs : {{plannedActivity.minutes_reported}} mins</p>
+            </td>
+            <td>
+              <p>{{plannedActivity.status}}</p>
+            </td>
+            <td>
+              <button ng-click="openUpdateActivityTemplate($index)" class="button-add u-full-width" style="height: 50px" type="button">
+                <img class="button-icon" src="img/edit_icon.svg">
+              </button>
+            </td>
+            <td>
+              <button ng-dblclick="deleteActivity($index)" class="button-remove u-full-width" style="height: 50px" type="button">
+                <img class="button-icon" style="height: 25px; padding-top: 9px" src="img/trash_icon.svg">
+              </button>
+              </td>
+          </tr>
+        </table>
+      </div>
+    </twelve-columns>
+  </container>
+</div>

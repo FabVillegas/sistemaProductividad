@@ -1,0 +1,16 @@
+<div class="modal-title">Agregar proyecto</div>
+<input ng-model="project.name" class="u-full-width" type="text" placeholder="Nombre">
+<input ng-model="project.type" class="u-full-width" type="text" placeholder="Tipo">
+<input ng-model="project.description" class="u-full-width" type="text" placeholder="Descripción">
+<label class="modal-date-label">Fecha Inicio</label>
+<label class="modal-date-label">Fecha Fin</label>
+<div class="picker-container">
+  <input ng-model="project.beginDate" ng-click="switchDatePicker('project', 'begin')" class="picker-input" type="text">
+  <date-picker ng-model="project.beginDate" ng-show="project_beginDate" ng-change="switchDatePicker('project', 'begin')" class="custom-datepicker"  format-date="formatDate" parse-date="parseDate"></date-picker>
+</div>
+<div class="picker-container">
+  <input ng-model="project.endDate" ng-click="switchDatePicker('project', 'end')" class="picker-input" type="text">
+  <date-picker ng-model="project.endDate" ng-show="project_endDate" ng-change="switchDatePicker('project', 'end')" class="custom-datepicker" format-date="formatDate" parse-date="parseDate"></date-picker>
+</div>
+<p>&nbsp;</p>
+<button ng-click="saveProject()" class="u-full-width button-add" type="button">Guardar</button>

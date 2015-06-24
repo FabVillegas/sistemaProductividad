@@ -1,0 +1,25 @@
+<div class="modal-title">Editar persona</div>
+<label ng-show="nameIsMissed" style="color: red">Falta escribir el nombre</label>
+<input ng-model="selectedUser.name" class="u-full-width" type="text" placeholder="Nombre">
+<label ng-show="lastnameIsMissed" style="color: red">Falta escribir el apellido</label>
+<input ng-model="selectedUser.lastname" class="u-full-width" type="text" placeholder="Apellido">
+<input ng-model="selectedUser.photo" class="u-full-width" type="text" placeholder="Foto: http://www.usaria.mx/acerca-de">
+<label ng-show="emailIsMissed" style="color: red">Falta escribir el correo</label>
+<input ng-model="selectedUser.email" class="u-full-width" type="text" placeholder="Correo: nombre.apellido@usaria.mx">
+<label>Hrs de trabajo por semana</label>
+<select ng-model="selectedUser.hrs_to_complete" class="u-full-width">
+  <option>20</option>
+  <option selected>40</option>
+</select>
+<label>Privilegio</label>
+<select ng-model="selectedUser.privilege" class="u-full-width">
+  <option>Empleado</option>
+  <option>Administrador de Proyecto</option>
+  <option>Administrador de Sistema</option>
+</select>
+<label>Líder</label>
+<select ng-model="selectedUser.id_boss" ng-options="responsable.name for responsable in responsables" class="u-full-width">
+</select>
+<a ng-click="resetPassword()"style="cursor: pointer; font-size: 0.75em">Reestablecer contraseña</a>
+<p>&nbsp;</p>
+<button ng-click="updateUser()" class="u-full-width button-add" type="button">Guardar</button>

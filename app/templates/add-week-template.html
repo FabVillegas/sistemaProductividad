@@ -1,0 +1,6 @@
+<div class="modal-title">Desbloquear Semana</div>
+<label>Elegir Semana</label>
+<select ng-model="unlockedWeek.month" ng-change="getMondays()" ng-options="month.name for month in months"></select>
+<select ng-model="unlockedWeek.week" class="u-full-width" ng-options="week.dateToShow for week in weeks"></select>
+<p>&nbsp;</p>
+<button ng-click="saveWeek()" class="u-full-width button-add" type="button">Guardar</button>

@@ -1,0 +1,23 @@
+<div class="modal-title">Agregar Actividad Extra</div>
+<label>Elegir proyecto:</label>
+<select ng-model="selected.project" ng-options="project.name for project in projects" class="u-full-width"></select>
+<label style="color:red" ng-show="emptyName">Falta escribir un nombre</label>
+<label>No usar signo de #</label>
+<input ng-model="newExtraActivity.name" class="u-full-width" type="text" placeholder="Nombre de la actividad extra">
+<label>Tiempo de la actividad:</label>
+<label style="color:red" ng-show="notNumber">No se ingreso un número valido de horas</label>
+<input ng-model="newExtraActivity.reportedHours" type="number" min="0" placeholder="Horas" class="hrs-picker">
+<input ng-model="newExtraActivity.reportedMinutes" type="number" min="0" placeholder="Minutos" class="hrs-picker">
+<input ng-model="newExtraActivity.comments" class="u-full-width" type="text" placeholder="Comentarios">
+<label class="modal-date-label">Fecha Inicio</label>
+<label class="modal-date-label">Fecha Fin</label>
+<div class="picker-container">
+  <input ng-model="newExtraActivity.beginDate" ng-click="switchDatePicker('newExtraActivity','begin')" class="picker-input" type="text">
+  <date-picker ng-model="newExtraActivity.beginDate" ng-show="newExtraActivity_beginDate" ng-change="switchDatePicker('newExtraActivity','begin')" class="custom-datepicker"  format-date="formatDate" parse-date="parseDate"></date-picker>
+</div>
+<div class="picker-container">
+  <input ng-model="newExtraActivity.endDate" ng-click="switchDatePicker('newExtraActivity','end')" class="picker-input" type="text">
+  <date-picker ng-model="newExtraActivity.endDate" ng-show="newExtraActivity_endDate" ng-change="switchDatePicker('newExtraActivity','end')" class="custom-datepicker"  format-date="formatDate" parse-date="parseDate"></date-picker>
+</div>
+<p>&nbsp;</p>
+<button ng-click="saveExtraActivity()" class="u-full-width button-add" type="button">Guardar</button>

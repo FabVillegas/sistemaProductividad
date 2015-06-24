@@ -1,0 +1,31 @@
+<div ng-controller="projectsCtrl">
+  <div class="content-container">
+    <div class="project-manager-privilege">
+      <container margin-top="150">
+        <three-columns offset="nine">
+          <button ng-click="open_addProjectTemplate()" class="button-add u-full-width" type="button">Agregar proyecto</button>
+        </three-columns>
+      </container>
+      <container>
+        <input ng-model="search.text" style="width: 96%; margin: 0 2% 10px 2%" placeholder="Teclea nombre de proyecto, nombre de persona, fecha a buscar" type="text">
+        <four-columns ng-repeat="project in projects | filter:search.text track by $index">
+          <div class="project">
+            <div class="project-info">
+              <p class="project-name">{{project.name}}</p>
+              <p class="project-dates">{{project.begin_date}} al {{project.end_date}}</p>
+            </div>
+            <label class="project-label">Planeado:  {{project.sum_hrs_planned | number:2}} hrs</label>
+            <label class="project-label">Reportado: {{project.sum_hrs_reported | number:2}} hrs</label>
+            <progress class="project-planned-hours" value="{{project.sum_hrs_reported}}" max="{{project.sum_hrs_planned}}"></progress>
+            <div class="project-employees-container">
+              <div ng-repeat="employee in project.employees track by $index">
+                <img class="project-employee-photo" src="{{employee.photo}}">
+              </div>
+            </div>
+            <button ng-click="addActivities($index)" class="button-add u-full-width" style="margin-top: 10px; margin-bottom: 0;" type="button">Más información</button>
+          </div>
+        </four-columns>
+      </container>
+    </div>
+  </div>
+</div>

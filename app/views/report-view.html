@@ -1,0 +1,83 @@
+<div ng-controller="reportCtrl">
+  <container margin-top="150">
+    <four-columns>
+      <label>Selecciona una persona: </label>
+      <select ng-change="getData()" ng-model="selected.responsable_one" ng-options="responsable.name for responsable in responsables" class="u-full-width"></select>
+    </four-columns>
+  </container>
+  <container ng-show="oneIsSelected">
+    <three-columns>
+      <img src="{{selected.responsable_one.photo}}" style="width: 100%; height: auto; margin-bottom: 50px;">
+    </three-columns>
+    <twelve-columns>
+      <label>Da click en una columna para ver el detalle de la información debajo de la gráfica: </label>
+      <div class="labels" style= "float: left; width: 22%; margin-left: 78%;">
+        <div style="width: 100%; float: left">
+          <label style="width: 150px; float: left; margin-right: 10px;">Horas planeadas</label>
+          <div id="hrsP" style="width: 20px; height: 20px; background-color: rgba(70, 70, 70, 0.1); float: left; border: 2px solid #464646"></div>
+        </div>
+        <div style="width: 100%; float: left">
+          <label style="width: 150px; float: left; margin-right: 10px;">Horas reportadas</label>
+          <div id="hrsP" style="width: 20px; height: 20px; background-color: rgba(1, 71, 189, 0.1); float: left; border: 2px solid #0147BD"></div>
+        </div>
+        <div style="width: 100%; float: left">
+          <label style="width: 150px; float: left; margin-right: 10px;">Horas extras</label>
+          <div id="hrsP" style="width: 20px; height: 20px; background-color: rgba(255, 103, 0, 0.1); float: left; border: 2px solid #FF6700"></div>
+        </div>
+      </div>
+      <canvas id="bar" class="chart chart-bar" data="data" labels="labels" series="series" colours="colors" options="myoptions" click="onClick"></canvas>
+    </twelve-columns>
+    <twelve-columns ng-show="showDetail">
+      <label ng-show="plannedActivities.length > 0" style="margin-top: 50px">Actividades planeadas en {{selectedMonth}}</label>
+      <table class="u-full-width" ng-show="plannedActivities.length > 0">
+        <tr>
+          <th>Nombre</th>
+          <th>Inicio</th>
+          <th>Fin</th>
+          <th style="text-align: center">Tiempo planeado</th>
+          <th style="text-align: center">Tiempo reportado</th>
+        </tr>
+        <tr ng-repeat="AP in plannedActivities | filter:search.text track by $index">
+          <td>
+            <p>{{AP.activity_name}}</p>
+          </td>
+          <td>
+            <p class="activity-field-short">{{AP.begin_date}}</p>
+          </td>
+          <td>
+            <p class="activity-field-short">{{AP.end_date}}</p>
+          </td>
+          <td style="text-align: center">
+            <p>{{AP.hrs_planned}} hrs : {{AP.minutes_planned}} mins</p>
+          </td>
+          <td style="text-align: center">
+            <p>{{AP.hrs_reported}} hrs : {{AP.minutes_reported}} mins</p>
+          </td>
+        </tr>
+      </table>
+      <label ng-show="extraActivities.length > 0" style="margin-top: 50px">Actividades institucionales y extras en {{selectedMonth}}</label>
+      <table class="u-full-width" ng-show="extraActivities.length > 0">
+        <tr>
+          <th>Nombre</th>
+          <th>Inicio</th>
+          <th>Fin</th>
+          <th style="text-align: center">Tiempo reportado</th>
+        </tr>
+        <tr ng-repeat="AE in extraActivities | filter:search.text track by $index">
+          <td>
+            <p>{{AE.activity_name}}</p>
+          </td>
+          <td>
+            <p class="activity-field-short">{{AE.begin_date}}</p>
+          </td>
+          <td>
+            <p class="activity-field-short">{{AE.end_date}}</p>
+          </td>
+          <td style="text-align: center">
+            <p>{{AE.hrs_reported}} hrs : {{AE.minutes_reported}} mins</p>
+          </td>
+        </tr>
+      </table>
+    </twelve-columns>
+  </container>
+</div>

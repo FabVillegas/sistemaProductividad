@@ -1,0 +1,23 @@
+<div class="modal-title">Agregar Actividad</div>
+<label style="color:red" ng-show="emptyName">Falta escribir un nombre</label>
+<label>No usar signo de #</label>
+<input ng-model="activity.name" class="u-full-width" type="text" placeholder="Nombre">
+<label style="color:red" ng-show="emptyResponsable">Falta elegir responsable</label>
+<select ng-model="selected.responsable" ng-options="responsable.name for responsable in responsables" class="u-full-width"></select>
+<label>Tiempo planeado para la actividad:</label>
+<label style="color:red" ng-show="notNumber">No se ingreso un número valido de horas</label>
+<input ng-model="activity.estimatedHours" type="number" min="0" placeholder="Horas estimadas" class="hrs-picker">
+<input ng-model="activity.estimatedMinutes" type="number" min="0" placeholder="Minutos estimados" class="hrs-picker">
+<input ng-model="activity.comments" class="u-full-width" type="text" placeholder="Comentarios">
+<label class="modal-date-label">Fecha Inicio</label>
+<label class="modal-date-label">Fecha Fin</label>
+<div class="picker-container">
+  <input ng-model="activity.beginDate" ng-click="switchDatePicker('activity','begin')" class="picker-input" type="text">
+  <date-picker ng-model="activity.beginDate" ng-show="activity_beginDate" ng-change="switchDatePicker('activity','begin')" class="custom-datepicker"  format-date="formatDate" parse-date="parseDate"></date-picker>
+</div>
+<div class="picker-container">
+  <input ng-model="activity.endDate" ng-click="switchDatePicker('activity','end')" class="picker-input" type="text">
+  <date-picker ng-model="activity.endDate" ng-show="activity_endDate" ng-change="switchDatePicker('activity','end')" class="custom-datepicker"  format-date="formatDate" parse-date="parseDate"></date-picker>
+</div>
+<p>&nbsp;</p>
+<button ng-click="saveActivity()" class="u-full-width button-add" type="button">Guardar</button>
