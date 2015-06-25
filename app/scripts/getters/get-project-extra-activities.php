@@ -2,17 +2,13 @@
 
   require_once '../config.php';
 
-  $id_user = $_GET['id_user'];
-  $begin_date = $_GET['begin_date'];
-  $end_date = $_GET['end_date'];
-
-  $select_query = "SELECT
-                    AE.id_activity, P.id_project, AE.id_user, P.name as project_name, AE.begin_date,
-                    AE.end_date, AE.hrs_reported, AE.minutes_reported, AE.comments,
-                    AE.name as activity_name
-                  FROM activity_extra as AE, project as P
-                  WHERE AE.id_project = P.id_project and AE.id_user = '$id_user' and
-                  (AE.begin_date BETWEEN '$begin_date' AND '$end_date' or AE.end_date BETWEEN '$begin_date' AND '$end_date')";
+  $id = $_GET['id_project'];
+  $select_query = "SELECT AE.id_activity, AE.id_project, AE.id_user, U.name as employee,
+                   AE.begin_date, AE.end_date, AE.name as activity_name,
+                   AE.hrs_reported, AE.minutes_reported, AE.comments
+            FROM activity_extra as AE, user as U
+            WHERE AE.id_user = U.id_user and AE.id_project = $id
+            ORDER BY AE.begin_date ASC";
 
   $answer = $mysqli->query($select_query);
   $result = array();

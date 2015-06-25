@@ -7,7 +7,8 @@
                    A.begin_date, A.end_date, A.name as activity_name, A.hrs_planned, A.minutes_planned,
                    A.hrs_reported, A.minutes_reported, A.comments, A.status
             FROM `activity_planned` as A,`user` as U
-            WHERE A.id_user = U.id_user and A.id_project = $id";
+            WHERE A.id_user = U.id_user and A.id_project = $id
+            ORDER BY A.begin_date ASC";
   $answer = $mysqli->query($query);
   $result = array();
   foreach( $answer as $row ){

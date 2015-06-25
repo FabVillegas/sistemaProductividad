@@ -37,8 +37,17 @@
       <input type="file" style="visibility: hidden">
       <button ng-click="addActivity()" class="u-full-width button-add" type="button">Nueva actividad</button>
     </three-columns>
-    <twelve-columns>
-      <h4>Actividades</h4>
+  </container>
+  <container margin-top="50">
+    <three-columns>
+      <a id="planned" ng-click="showActivities('planned')" class="selected activity-panel">Actividades Planeadas</a>
+    </three-columns>
+    <four-columns>
+      <a id="extras" ng-click="showActivities('extras')" class="activity-panel">Actividades Institucionales y extras</a>
+    </four-columns>
+  </container>
+  <container margin-top="10">
+    <twelve-columns ng-show="showPlanned">
       <input ng-model="search.text" class="u-full-width" placeholder="Teclea nombre, responsable, fecha, estado a buscar" type="text">
       <div style="overflow-x: scroll">
         <table class="u-full-width">
@@ -81,6 +90,43 @@
             </td>
             <td>
               <button ng-dblclick="deleteActivity($index)" class="button-remove u-full-width" style="height: 50px" type="button">
+                <img class="button-icon" style="height: 25px; padding-top: 9px" src="img/trash_icon.svg">
+              </button>
+              </td>
+          </tr>
+        </table>
+      </div>
+    </twelve-columns>
+
+    <twelve-columns ng-show="showExtras">
+      <input ng-model="search.text" class="u-full-width" placeholder="Teclea nombre, responsable, fecha, estado a buscar" type="text">
+      <div style="overflow-x: scroll">
+        <table class="u-full-width">
+          <tr>
+            <th>Nombre</th>
+            <th>Responsable</th>
+            <th>Inicio</th>
+            <th>Fin</th>
+            <th style="text-align: center">Tiempo reportado</th>
+          </tr>
+          <tr ng-repeat="item in extraActivities | filter:search.text track by $index">
+            <td>
+              <p>{{item.activity_name}}</p>
+            </td>
+            <td>
+              <p>{{item.employee}}</p>
+            </td>
+            <td>
+              <p class="activity-field-short">{{item.begin_date}}</p>
+            </td>
+            <td>
+              <p class="activity-field-short">{{item.end_date}}</p>
+            </td>
+            <td style="text-align: center">
+              <p>{{item.hrs_reported}} hrs : {{item.minutes_reported}} mins</p>
+            </td>
+            <td>
+              <button ng-dblclick="deleteExtraActivity($index)" class="button-remove u-full-width" style="height: 50px" type="button">
                 <img class="button-icon" style="height: 25px; padding-top: 9px" src="img/trash_icon.svg">
               </button>
               </td>

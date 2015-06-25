@@ -19,6 +19,7 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
   =============================================== */
 
   $scope.activities = [];
+  $scope.extraActivities = [];
   $scope.responsables = [
     {id_user: 0, name: 'Responsable', notAnOption: true}
   ];
@@ -31,6 +32,8 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
   $scope.notNumber = false;
   $scope.emptyName = false;
   $scope.emptyResponsable = false;
+  $scope.showPlanned = true;
+  $scope.showExtras = false;
 
   /* ============================================
       $scope functions
@@ -101,7 +104,16 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
   };
 
   $scope.getExtraActivities = function(){
-
+    $http({
+      url: './scripts/getters/get-project-extra-activities.php',
+      method: 'GET',
+      params: {
+        id_project: $stateParams.projectId
+      }
+    })
+    .success( function( response ) {
+      $scope.extraActivities = response;
+    });
   };
 
   // Callback functions that xmlToJson has as parameter
@@ -177,6 +189,19 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
     })
     .success( function( response ) {
       $scope.getActivities();
+    });
+  };
+
+  $scope.deleteExtraActivity = function( index ) {
+    $http({
+      url: './scripts/deleters/delete-extra-activity.php',
+      method: 'GET',
+      params: {
+        id_activity: $scope.extraActivities[index].id_activity,
+      }
+    })
+    .success( function( response ) {
+      $scope.getExtraActivities();
     });
   };
 
@@ -321,6 +346,25 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
       return tokens && new Date(tokens[1], tokens[2] - 1, tokens[3]);
   };
 
+  $scope.showActivities = function(selection){
+    if( selection === 'planned' ){
+      $scope.showPlanned = true;
+      $scope.showExtras = false;
+      var target = document.getElementById('planned');
+      angular.element(target).addClass('selected');
+      var target = document.getElementById('extras');
+      angular.element(target).removeClass('selected');
+    }
+    else if( selection === 'extras' ){
+        $scope.showPlanned = false;
+        $scope.showExtras = true;
+        var target = document.getElementById('extras');
+        angular.element(target).addClass('selected');
+        var target = document.getElementById('planned');
+        angular.element(target).removeClass('selected');
+    }
+  };
+
   /* ============================================
       Calls on start
   =============================================== */
@@ -328,5 +372,5 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
   $scope.getUsers();
   $scope.findProjectById();
   $scope.getActivities();
-
+  $scope.getExtraActivities();
 };
