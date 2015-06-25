@@ -179,12 +179,12 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
     }
   };
 
-  $scope.deleteActivity = function( index ) {
+  $scope.deleteActivity = function( item ) {
     $http({
       url: './scripts/deleters/delete-activity.php',
       method: 'GET',
       params: {
-        id_activity: $scope.activities[index].id_activity
+        id_activity: item.id_activity
       }
     })
     .success( function( response ) {
@@ -192,12 +192,12 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
     });
   };
 
-  $scope.deleteExtraActivity = function( index ) {
+  $scope.deleteExtraActivity = function( item ) {
     $http({
       url: './scripts/deleters/delete-extra-activity.php',
       method: 'GET',
       params: {
-        id_activity: $scope.extraActivities[index].id_activity,
+        id_activity: item.id_activity,
       }
     })
     .success( function( response ) {
@@ -314,8 +314,8 @@ function projectActivitiesCtrl ($scope, $http, $state, $stateParams, ngDialog, x
     });
   };
 
-  $scope.openUpdateActivityTemplate = function( index ){
-    $scope.editableActivity = $scope.activities[index];
+  $scope.openUpdateActivityTemplate = function( activityItem ){
+    $scope.editableActivity = activityItem;
     $scope.editableActivity.hrs_planned = +$scope.editableActivity.hrs_planned;
     $scope.editableActivity.minutes_planned = +$scope.editableActivity.minutes_planned;
     $scope.editableActivity.responsable = {};

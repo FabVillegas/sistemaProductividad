@@ -9,6 +9,7 @@ function recordsCtrl ($scope, $http, ngDialog){
   =============================================== */
 
   $scope.newExtraActivity = {};
+  $scope.editable_extraActivity = {};
   $scope.selected = {};
   $scope.user = {};
 
@@ -34,9 +35,11 @@ function recordsCtrl ($scope, $http, ngDialog){
   $scope.showExtras = false;
   $scope.newExtraActivity_beginDate = false;
   $scope.newExtraActivity_endDate = false;
+  $scope.editable_extraActivity_beginDate = false;
+  $scope.editable_extraActivity_endDate = false;
 
   /* ============================================
-     $scope functions
+     $scope logic functions
   =============================================== */
 
   $scope.getPlannedActivities = function(){
@@ -50,7 +53,6 @@ function recordsCtrl ($scope, $http, ngDialog){
       }
     })
     .then(function(response){
-      console.log(response);
       $scope.activities = response.data;
       angular.forEach($scope.activities, function(obj, key){
         obj.hrs_reported = +obj.hrs_reported;
@@ -196,6 +198,35 @@ function recordsCtrl ($scope, $http, ngDialog){
     }
   };
 
+  $scope.updateExtraActivity = function() {
+    if( $scope.editable_extraActivity.comments === undefined ) {
+      $scope.editable_extraActivity.comments = '';
+    }
+    $scope.editable_extraActivity.activity_name === undefined ? $scope.emptyName = true : $scope.emptyName = false;
+    $scope.editable_extraActivity.begin_date === undefined ? $scope.emptyBeginDate = true : $scope.emptyBeginDate = false;
+    $scope.editable_extraActivity.end_date === undefined ? $scope.emptyEndDate = true : $scope.emptyEndDate = false;
+    if( $scope.emptyName === false && $scope.emptyBeginDate === false && $scope.emptyEndDate === false ) {
+      $http({
+        url: './scripts/updaters/update-extra-activity-info.php',
+        method : 'GET',
+        params: {
+          id_activity: $scope.editable_extraActivity.id_activity,
+          begin_date: $scope.editable_extraActivity.begin_date,
+          end_date: $scope.editable_extraActivity.end_date,
+          name: $scope.editable_extraActivity.activity_name,
+          comments: $scope.editable_extraActivity.comments
+        }
+      })
+      .then( function( response ) {
+        $scope.editable_extraActivity = {};
+        ngDialog.close({
+          template: 'templates/update-extra-activity-template.html',
+        });
+        $scope.getExtraActivities();
+      });
+    }
+  };
+
   $scope.saveExtraRecord = function(index){
     if( isNaN($scope.activities_extra[index].hrs_reported) || isNaN($scope.activities_extra[index].minutes_reported) ){
       ngDialog.open({
@@ -226,8 +257,25 @@ function recordsCtrl ($scope, $http, ngDialog){
     }
   };
 
+  $scope.deleteExtraActivity = function() {
+    $http({
+      url: './scripts/deleters/delete-extra-activity.php',
+      method: 'GET',
+      params: {
+        id_activity: $scope.editable_extraActivity.id_activity,
+      },
+    })
+    .then( function( response ) {
+      $scope.editable_extraActivity = {};
+      ngDialog.close({
+        template: 'templates/update-extra-activity-template.html',
+      });
+      $scope.getExtraActivities();
+    });
+  };
+
   /* ============================================
-     normal functions
+     DOM functions
   =============================================== */
 
   $scope.formatDate = function(date){
@@ -278,12 +326,30 @@ function recordsCtrl ($scope, $http, ngDialog){
           $scope.newExtraActivity_endDate = !$scope.newExtraActivity_endDate;
         }
         break;
+      case 'editable_extraActivity':
+        if( limitName === 'begin'){
+          $scope.editable_extraActivity_beginDate = !$scope.editable_extraActivity_beginDate;
+        }
+        else if( limitName === 'end' ){
+          $scope.editable_extraActivity_endDate = !$scope.editable_extraActivity_endDate;
+        }
+        break;
     }
   };
 
   $scope.openExtraActivityTemplate = function(){
     ngDialog.open({
       template: 'templates/add-extra-activity-template.html',
+      closeByDocument: true,
+      closeByEscape: true,
+      scope: $scope
+    });
+  };
+
+  $scope.open_updateExtraActivity = function( selectedItem ) {
+    $scope.editable_extraActivity = selectedItem;
+    ngDialog.open({
+      template: 'templates/update-extra-activity-template.html',
       closeByDocument: true,
       closeByEscape: true,
       scope: $scope
