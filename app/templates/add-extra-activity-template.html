@@ -6,8 +6,8 @@
 <input ng-model="newExtraActivity.name" class="u-full-width" type="text" placeholder="Nombre de la actividad extra">
 <label>Tiempo de la actividad:</label>
 <label style="color:red" ng-show="notNumber">No se ingreso un número valido de horas</label>
-<input ng-model="newExtraActivity.reportedHours" type="number" min="0" placeholder="Horas" class="hrs-picker">
-<input ng-model="newExtraActivity.reportedMinutes" type="number" min="0" placeholder="Minutos" class="hrs-picker">
+<input ng-model="newExtraActivity.hrs_reported" type="number" min="0" placeholder="Horas" class="hrs-picker">
+<input ng-model="newExtraActivity.minutes_reported" type="number" min="0" placeholder="Minutos" class="hrs-picker">
 <input ng-model="newExtraActivity.comments" class="u-full-width" type="text" placeholder="Comentarios">
 <label class="modal-date-label">Fecha Inicio</label>
 <label class="modal-date-label">Fecha Fin</label>
@@ -20,4 +20,4 @@
   <date-picker ng-model="newExtraActivity.endDate" ng-show="newExtraActivity_endDate" ng-change="switchDatePicker('newExtraActivity','end')" class="custom-datepicker"  format-date="formatDate" parse-date="parseDate"></date-picker>
 </div>
 <p>&nbsp;</p>
-<button ng-click="saveExtraActivity()" class="u-full-width button-add" type="button">Guardar</button>
+<button ng-click="add_extraActivity()" class="u-full-width button-add" type="button">Guardar</button>

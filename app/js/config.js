@@ -61,7 +61,12 @@ config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRou
 		url: '/report/',
 		templateUrl: 'views/report-view.html',
 		controller: 'reportCtrl',
-	});
+	}).
+  state('dashboard.reportWeekly', {
+    url: '/report/weekly/',
+    templateUrl: 'views/report-weekly-view.html',
+    controller: 'reportWeeklyCtrl',
+  });
 }]);
 
 

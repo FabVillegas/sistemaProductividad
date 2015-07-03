@@ -1,0 +1,17 @@
+<div ng-controller="reportWeeklyCtrl">
+  <container margin-top="150">
+    <four-columns>
+      <select ng-change="getData()" ng-model="selected.responsable" ng-options="responsable.name for responsable in responsables" class="u-full-width"></select>
+    </four-columns>
+  </container>
+  <container>
+    <three-columns>
+      <img ng-show="someoneIsSelected" src="{{selected.responsable.photo}}" style="width: 100%; height: auto">
+    </three-columns>
+  </container>
+  <container>
+    <twelve-columns>
+      <canvas id="bar" class="chart chart-bar" data="data" labels="labels" series="series" colours="colors" options="myoptions" click="onClick"></canvas>
+    </twelve-columns>
+  </container>
+</div>

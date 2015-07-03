@@ -19,7 +19,6 @@
   $query = "INSERT INTO user(email, password, salt, name, lastname, photo, privilege, hrs_to_complete, id_superior)
             VALUES ('$user_email','$password','$salt','$user_name','$user_lastname','$user_photo','$user_privilege',$user_hrs, '$user_superior')";
   $result = $mysqli->query($query);
-  //$result = $mysqli->affected_rows;
   echo $json_response = json_encode($result);
 
 ?>

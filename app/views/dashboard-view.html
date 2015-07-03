@@ -12,7 +12,10 @@
           <li ng-class="{currentState: projectsSelected}">Personas</li>
         </a>
         <a ui-sref="dashboard.progress" ng-show="privilegeADMIN || privilegePM" ng-click="updateMenu('progress')">
-          <li ng-class="{currentState: progressSelected}">Progreso Individual</li>
+          <li ng-class="{currentState: progressSelected}">Reporte Individual</li>
+        </a>
+        <a ui-sref="dashboard.reportWeekly" ng-show="privilegePM">
+          <li>Reporte semanal</li>
         </a>
         <a ui-sref="dashboard.report" ng-show="privilegePM" ng-click="updateMenu('report')">
           <li ng-class="{currentState: reportSelected}">Reporte mensual</li>

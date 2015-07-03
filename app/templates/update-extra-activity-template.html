@@ -3,7 +3,7 @@
 <p>{{editable_extraActivity.project_name}}</p>
 <label style="color:red" ng-show="emptyName">Falta escribir un nombre</label>
 <label>Nombre:</label>
-<input ng-model="editable_extraActivity.activity_name" class="u-full-width" type="text" placeholder="Nombre">
+<input ng-model="editable_extraActivity.name" class="u-full-width" type="text" placeholder="Nombre">
 <label>Comentarios:</label>
 <textarea ng-model="editable_extraActivity.comments" class="u-full-width" rows="5" style="resize: none"></textarea>
 <label style="color:red" ng-show="emptyBeginDate">No se ingreso una fecha válida de inicio</label>
@@ -17,6 +17,6 @@
   <date-picker ng-model="editable_extraActivity.end_date" ng-show="editable_extraActivity_endDate" ng-change="switchDatePicker('editable_extraActivity','end')" class="custom-datepicker"  format-date="formatDate" parse-date="parseDate"></date-picker>
 </div>
 <p>&nbsp;</p>
-<button ng-click="updateExtraActivity()" class="u-full-width button-add" type="button">Guardar</button>
+<button ng-click="update_ExtraActivityInfo()" class="u-full-width button-add" type="button">Guardar</button>
 <p>&nbsp;</p>
 <a ng-click="deleteExtraActivity()" style="cursor: pointer">Borrar actividad</a>

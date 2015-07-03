@@ -53,7 +53,7 @@
     </twelve-columns>
     <!-- ACTIVITIES EXTRAS -->
     <three-columns offset="nine" ng-show="showExtras">
-      <button ng-click="openExtraActivityTemplate()" class="button-add u-full-width" type="button">Nueva actividad</button>
+      <button ng-click="open_extraActivityTemplate()" class="button-add u-full-width" type="button">Nueva actividad</button>
     </three-columns>
     <twelve-columns ng-show="showExtras">
       <div style="overflow-x: scroll">
@@ -76,7 +76,7 @@
             <td><input ng-model="AE.hrs_reported" class="activity-hrs-input" type="number" min="0" value="0"></td>
             <td><input ng-model="AE.minutes_reported" class="activity-hrs-input" type="number" min="0" value="0"></td>
             <td><input ng-model="AE.comments" class="activity-field-short" type="text"></td>
-            <td style="padding-left:10px"><button ng-click="saveExtraRecord($index)" class="button-add activity-field-short" type="button">Guardar</button></td>
+            <td style="padding-left:10px"><button ng-click="saveExtraActivityRecord($index)" class="button-add activity-field-short" type="button">Guardar</button></td>
             <td style="padding-left:10px"><button ng-click="open_updateExtraActivity(AE)" class="button-add activity-field-short" type="button">Editar</button></td>
           </tr>
         </table>

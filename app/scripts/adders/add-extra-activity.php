@@ -16,5 +16,6 @@
                   VALUES ('$id_project','$id_user','$begin_date','$end_date','$name','$hrs_reported','$minutes_reported','$comments')";
 
   $result = $mysqli->query($insert_query);
-  echo $json_response = json_encode($result);
+  echo $json_response = $mysqli->lastInsertId();
+  
 ?>
